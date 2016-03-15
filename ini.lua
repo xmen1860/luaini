@@ -6,11 +6,10 @@ function get(filename)
 
 	local initable = {}
 	local current_section
-	for line in f:lines() do
-		local l
-		local i = line:find("#")
+	for l in f:lines() do
+		local i = l:find("#")
 		if i then
-			l = line:sub(1, i - 1)
+			l = l:sub(1, i - 1)
 		end	
 		l = l:match("^%s*(.-)%s*$")	
 
@@ -23,7 +22,7 @@ function get(filename)
 				local key, value = l:match("([^=]*)%=(.*)")	
 				key = key:match("^%s*(.-)%s*$")
 				value = value:match("^%s*(.-)%s*$")
-				if key and value and section then
+				if key and value and current_section then
 					initable[current_section][key] = value
 				end	
 			end	
