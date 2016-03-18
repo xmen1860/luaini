@@ -8,9 +8,7 @@ function get(filename)
 	local current_section
 	for l in f:lines() do
 		local i = l:find("#")
-		if i then
-			l = l:sub(1, i - 1)
-		end	
+		if i then l = l:sub(1, i - 1) end	
 		l = l:match("^%s*(.-)%s*$")	
 
 		if l ~= "" then
